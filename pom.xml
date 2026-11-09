@@ -23,7 +23,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.5.2</version>
 				<configuration>
-				<workingDirectory>${project.basedir}</workingDirectory>
+				<workingDirectory>${project.basedir}/..</workingDirectory>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
