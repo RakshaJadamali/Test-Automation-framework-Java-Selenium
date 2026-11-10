@@ -54,10 +54,12 @@ jobs:
       if: always()
         
       run: |    
-        mkdir -p public/extent-reports
-        cp -R report.html public/extent-reports/index.html
-        cp -R screenshots/* public/extent-reports/screenshots/
-        ls -l
+        rm -rf public
+        mkdir -p public/screenshots
+        cp report.html public/report.html 2>/dev/null || echo "no report.html"
+        cp report.html public/index.html 2>/dev/null || true
+        cp -R screenshots/* public/screenshots/ 2>/dev/null || true
+        ls -R public || true
 
     - name: Deploy
       if: always()
