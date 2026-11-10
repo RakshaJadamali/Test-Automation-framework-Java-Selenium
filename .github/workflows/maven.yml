@@ -40,11 +40,11 @@ jobs:
        name: screenshots
        path: screenshots/
 
-    - name: Upload test reports
+    - name: Upload HTML reports as artifacts
       if: always()
       uses: actions/upload-artifact@v7.0.2
       with:
-       name: Test reports
+       name: html-report
        path: report.html
 
     - name: Test Execution status
