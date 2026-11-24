@@ -1,12 +1,18 @@
 name: Test Automation workflow
 
 on:
+  workflow_dispatch: 
   schedule:
   - cron: 00 18 * * *
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
+   permissions:
+     contents: write
+     pages: write
+     id-token: write
 
 jobs:
   build:
