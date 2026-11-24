@@ -23,6 +23,8 @@ public class LoginDataProvider {
 	{
 		Gson gson = new Gson();		
 		File testDataFile = new File(System.getProperty("user.dir") + "/testData/logindata.json");
+		
+		
 		if (!testDataFile.exists()) {
 		testDataFile = new File(System.getProperty("user.dir") + "/automation-assignment/testData/logindata.json");
 		}
