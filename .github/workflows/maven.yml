@@ -24,7 +24,7 @@ jobs:
         cache: maven
         
     - name: Running Test Automation framework with Maven
-      run: mvn test -X -Dbrowser=chrome -DisLambdaTest=false -DisHeadless=true
+      run: mvn test -X -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=true
 
     - name: Upload test logs
       if: always()
@@ -33,15 +33,47 @@ jobs:
        name: Test logs
        path: logs/
 
-    - name: Upload test reports
+    - name: Upload Screenshots as artifacts
       if: always()
       uses: actions/upload-artifact@v7.0.2
       with:
-       name: Test reports
+       name: screenshots
+       path: screenshots/
+
+    - name: Upload HTML reports as artifacts
+      if: always()
+      uses: actions/upload-artifact@v7.0.2
+      with:
+       name: html-report
        path: report.html
 
     - name: Test Execution status
       run: echo "Test execution completed"
+
+    - name: Copy Report to gh-pages Folder
+      if: always()
+        
+      run: |    
+        rm -rf public
+        mkdir -p public/screenshots
+        cp report.html public/report.html 2>/dev/null || echo "no report.html"
+        cp report.html public/index.html 2>/dev/null || true
+        cp -R screenshots/* public/screenshots/ 2>/dev/null || true
+        ls -R public || true
+
+    - name: Deploy
+      if: always()
+      uses: JamesIves/github-pages-deploy-action@v4.8.0
+      with:
+        folder: public
+        token: ${{secrets.PAT1234}}
+        clean: true
+        
+        
+
+
+
       
+        
 
 
