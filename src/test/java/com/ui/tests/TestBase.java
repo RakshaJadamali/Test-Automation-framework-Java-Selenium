@@ -50,7 +50,7 @@ public class TestBase {
 		return homePage;
 	}
 	
-	/*@AfterMethod(description = "Tear down the page")
+	@AfterMethod(description = "Tear down the page")
 	public void tearDown()
 	{
 		if(isLambdaTest)
@@ -62,6 +62,6 @@ public class TestBase {
 		{
 			homePage.getDriver().quit();
 		}
-	}*/
+	}
 
 }
